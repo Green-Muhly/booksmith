@@ -22,6 +22,7 @@ public class Member {
     private String name;
     @NotEmpty
     private String password;
+
     private Long phoneNumber;
     private String email;
 
