@@ -2,6 +2,7 @@ package muhly.booksmith;
 
 import muhly.booksmith.domain.member.MemberRepository;
 import muhly.booksmith.domain.member.MemberRepositoryImpl;
+import muhly.booksmith.web.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,11 @@ public class SpringConfig {
     @Autowired
     public SpringConfig(EntityManager em) {
         this.em = em;
+    }
+
+    @Bean
+    public MemberService memberService() {
+        return new MemberService(memberRepository());
     }
 
     @Bean
