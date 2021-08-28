@@ -38,8 +38,16 @@ public class MemberRepositoryImpl implements MemberRepository{
     }
 
     @Override
+    public Optional<Member> findByLoginId(String loginId) {
+        return findAll().stream()
+                .filter(m -> m.getLoginId().equals(loginId))
+                .findFirst();
+    }
+
+    @Override
     public List<Member> findAll() {
         return em.createQuery("select  m from Member m", Member.class)
                 .getResultList();
     }
+
 }
