@@ -7,7 +7,7 @@ const App = () => {
     <>
       <Switch>
         <Route exact={true} path="/">
-          <Link to="login">Login</Link>
+          <Link to="/login">Login</Link>
         </Route>
         <Route path="/test">
           <div>Test</div>
