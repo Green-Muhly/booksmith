@@ -16,16 +16,16 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public Long join(Member member) {
-        validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
     }
 
-    private void validateDuplicateMember(Member member) {
-        Optional<Member> findMembers = memberRepository.findByName(member.getName());
-        if (!findMembers.isEmpty()) {
-            throw new IllegalStateException("이미 존재하는 회원입니다.");
+    public Boolean validateDuplicateMember(String id) {
+        Optional<Member> findMembers = memberRepository.findByLoginId(id);
+        if (findMembers.isEmpty()) {
+            return Boolean.TRUE;
         }
+        return Boolean.FALSE;
     }
 
     public List<Member> findMembers() {
