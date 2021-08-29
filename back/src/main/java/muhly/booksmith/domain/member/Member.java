@@ -1,6 +1,7 @@
 package muhly.booksmith.domain.member;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ public class Member {
     private Long id;
 
     @NotEmpty
+    @UniqueElements
     private String loginId;
     @NotEmpty
     private String name;
