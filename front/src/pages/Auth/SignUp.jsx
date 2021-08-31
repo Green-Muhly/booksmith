@@ -48,7 +48,7 @@ const SignUp = () => {
             name="email"
             className="mb-4 w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
           />
-          <button className="text-white bg-green-500 border-0 mt-10 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-xl font-semibold">
+          <button className="text-white bg-green-500 border-0 mt-5 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-xl font-semibold">
             가입 완료
           </button>
         </div>
