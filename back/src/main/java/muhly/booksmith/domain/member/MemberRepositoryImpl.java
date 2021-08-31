@@ -4,12 +4,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
 @Slf4j
+@Repository
 public class MemberRepositoryImpl implements MemberRepository{
 
+    @PersistenceContext
     private final EntityManager em;
 
     public MemberRepositoryImpl(EntityManager em) {

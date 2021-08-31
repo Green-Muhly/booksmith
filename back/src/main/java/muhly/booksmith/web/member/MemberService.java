@@ -3,6 +3,7 @@ package muhly.booksmith.web.member;
 import lombok.RequiredArgsConstructor;
 import muhly.booksmith.domain.member.Member;
 import muhly.booksmith.domain.member.MemberRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
+@Service
 @Transactional
 @RequiredArgsConstructor
 public class MemberService {
