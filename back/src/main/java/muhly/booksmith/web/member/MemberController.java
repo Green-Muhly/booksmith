@@ -20,11 +20,6 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/add")
-    public String addForm(@ModelAttribute("member") Member member) {
-        return "members/addMemberForm";
-    }
-
     @PostMapping("/add")
     public ResponseEntity<String> save(@Valid @ModelAttribute Member member, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
