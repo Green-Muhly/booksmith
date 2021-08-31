@@ -26,12 +26,12 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String save(@Valid @ModelAttribute Member member, BindingResult bindingResult) {
+    public ResponseEntity<String> save(@Valid @ModelAttribute Member member, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "members/addMemberForm";
+            return new ResponseEntity<>("FAILED", HttpStatus.BAD_REQUEST);
         }
         memberService.join(member);
-        return "redirect:/";
+        return new ResponseEntity<>("SUCCESS", HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/duplicate")
@@ -40,7 +40,7 @@ public class MemberController {
         if (result) {
             return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
         } else {
-            return new ResponseEntity<String>("Fail", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("FAILED", HttpStatus.NOT_FOUND);
         }
 
     }
