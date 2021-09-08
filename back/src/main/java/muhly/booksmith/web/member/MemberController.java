@@ -1,5 +1,6 @@
 package muhly.booksmith.web.member;
 
+import com.sun.xml.bind.v2.TODO;
 import lombok.RequiredArgsConstructor;
 import muhly.booksmith.domain.member.Member;
 import muhly.booksmith.domain.member.MemberRepository;
@@ -37,6 +38,12 @@ public class MemberController {
         } else {
             return new ResponseEntity<String>("FAILED", HttpStatus.NOT_FOUND);
         }
-
     }
+
+//    TODO: 2021-09-08
+//    @PostMapping("/findId")
+//    public ResponseEntity<String> findByName(@RequestBody String name) {
+//        Member findMember = memberService.findByLoginId(id);
+//        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+//    }
 }

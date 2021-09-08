@@ -38,4 +38,10 @@ public class MemberService {
         return memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException("id가 존재하지 않습니다."));
     }
 
+    public Member findByLoginId(String LoginId) {
+        Optional<Member> findMember = memberRepository.findByLoginId(LoginId);
+        return findMember.orElseThrow(() -> new NoSuchElementException("존재하지 않는 회원입니다."));
+    }
+
+
 }
