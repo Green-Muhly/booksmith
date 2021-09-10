@@ -18,7 +18,6 @@ public class Member {
     private Long id;
 
     @NotEmpty
-    @UniqueElements
     private String loginId;
     @NotEmpty
     private String name;

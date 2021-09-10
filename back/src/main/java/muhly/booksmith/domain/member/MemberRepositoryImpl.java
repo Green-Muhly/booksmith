@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
@@ -52,5 +53,4 @@ public class MemberRepositoryImpl implements MemberRepository{
         return em.createQuery("select  m from Member m", Member.class)
                 .getResultList();
     }
-
 }
