@@ -1,5 +1,6 @@
 package muhly.booksmith.web.member;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import muhly.booksmith.domain.member.Member;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 
 @Controller
 @RequiredArgsConstructor
@@ -17,8 +19,12 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> save(@RequestBody @Valid Member member) {
-        Long id = memberService.join(member);
+    public ResponseEntity<String> save(@RequestBody @Valid CreateMemberRequest request) {
+        Member member = new Member();
+        member.setLoginId(request.loginId);
+        member.setName(request.name);
+        member.setPassword(request.password);
+        memberService.join(member);
         return new ResponseEntity<>("SUCCESS", HttpStatus.ACCEPTED);
     }
 
@@ -30,6 +36,16 @@ public class MemberController {
         } else {
             return new ResponseEntity<>("FAILED", HttpStatus.NOT_FOUND);
         }
+    }
+
+    @Data
+    static class CreateMemberRequest {
+        @NotEmpty
+        private String loginId;
+        @NotEmpty
+        private String name;
+        @NotEmpty
+        private String password;
     }
 
 //    TODO: 2021-09-08
