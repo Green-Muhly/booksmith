@@ -1,17 +1,15 @@
 package muhly.booksmith.web.member;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import muhly.booksmith.domain.member.Member;
-import muhly.booksmith.domain.member.MemberRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,10 +19,11 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> save(@Valid @ModelAttribute Member member, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>("FAILED", HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<String> save(@RequestBody @Valid CreateMemberRequest request) {
+        Member member = new Member();
+        member.setLoginId(request.loginId);
+        member.setName(request.name);
+        member.setPassword(request.password);
         memberService.join(member);
         return new ResponseEntity<>("SUCCESS", HttpStatus.ACCEPTED);
     }
@@ -33,10 +32,26 @@ public class MemberController {
     public ResponseEntity<String> validateDuplicate(@RequestBody String id) {
         Boolean result = memberService.validateDuplicateMember(id);
         if (result) {
-            return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+            return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
         } else {
-            return new ResponseEntity<String>("FAILED", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("FAILED", HttpStatus.NOT_FOUND);
         }
-
     }
+
+    @Data
+    static class CreateMemberRequest {
+        @NotEmpty
+        private String loginId;
+        @NotEmpty
+        private String name;
+        @NotEmpty
+        private String password;
+    }
+
+//    TODO: 2021-09-08
+//    @PostMapping("/findId")
+//    public ResponseEntity<String> findByName(@RequestBody String name) {
+//        Member findMember = memberService.findByLoginId(id);
+//        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+//    }
 }
