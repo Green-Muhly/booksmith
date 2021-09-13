@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import { signUpAPI } from "../../apis/authAPI";
 
 const SignUp = () => {
     const [inputs, setInputs] = useState({
-        id: "",
+        loginId: "",
         password: "",
         passwordConfirm: "",
         name: "",
         tel: "",
     });
 
-    const { id, password, passwordConfirm, name, tel } = inputs;
+    const { loginId, password, passwordConfirm, name, tel } = inputs;
     const onChange = ({ target }) => {
         const { name, value } = target;
         setInputs({
@@ -29,12 +30,13 @@ const SignUp = () => {
             alert("패스워드가 일치하지 않습니다.");
             return;
         }
-        if (validContent(id, "ID")) return;
+        if (validContent(loginId, "ID")) return;
         if (validContent(password, "패스워드")) return;
         if (validContent(name, "이름")) return;
         if (validContent(tel, "휴대폰 번호")) return;
 
-        console.log(id, password, name, tel);
+        const result = signUpAPI({ loginId, password, name });
+        console.log(result);
     };
 
     return (
@@ -46,7 +48,7 @@ const SignUp = () => {
                         <input
                             type="text"
                             placeholder="아이디"
-                            name="id"
+                            name="loginId"
                             onChange={onChange}
                             className=" w-3/4 bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                         />
