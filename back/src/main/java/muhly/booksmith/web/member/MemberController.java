@@ -26,6 +26,7 @@ public class MemberController {
         member.setPassword(request.password);
         memberService.join(member);
         return new ResponseEntity<>("SUCCESS", HttpStatus.ACCEPTED);
+        // TODO: 2021-09-26 중복검증하기
     }
 
     @PostMapping("/duplicate")
@@ -36,6 +37,7 @@ public class MemberController {
         } else {
             return new ResponseEntity<>("FAILED", HttpStatus.NOT_FOUND);
         }
+        // TODO: 2021-09-26 Param으로 받아오기
     }
 
     @Data
