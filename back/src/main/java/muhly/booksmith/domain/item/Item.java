@@ -18,9 +18,12 @@ public class Item {
     private Long id;
 
     private String name;
+    private String author;
+    private String publisher;
     private int price;
 
-    @ManyToMany
-    private List<Category> categories = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
 }
