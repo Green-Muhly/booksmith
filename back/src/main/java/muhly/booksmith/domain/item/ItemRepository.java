@@ -28,4 +28,9 @@ public class ItemRepository {
         return em.createQuery("select i from Item i", Item.class)
                 .getResultList();
     }
+
+    public void deleteById(Long id) {
+        Item item = em.find(Item.class, id);
+        em.remove(item);
+    }
 }

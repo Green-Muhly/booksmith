@@ -13,6 +13,5 @@ public class CreateItemRequest {
     private String author;
     private String publisher;
     private int price;
-
-    private List<Category> categories;
+    private Category category;
 }
